@@ -1,0 +1,711 @@
+Classfile /Users/crowhyc/Library/Mobile Documents/com~apple~CloudDocs/IdeaProjects/portal-bui/portal-portalbiz/target/classes/com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.class
+  Last modified 2017-8-30; size 9657 bytes
+  MD5 checksum 8eca6c38506af4e7ff5fcee9e20ef29d
+  Compiled from "LoginInfoInterceptor.java"
+public class com.keruyun.portal.portalbiz.sso.filter.LoginInfoInterceptor implements org.springframework.web.servlet.HandlerInterceptor
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+    #1 = Methodref          #119.#211     // java/lang/Object."<init>":()V
+    #2 = String             #212          // /logout
+    #3 = Fieldref           #117.#213     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.logoutStr:Ljava/lang/String;
+    #4 = InterfaceMethodref #214.#215     // javax/servlet/http/HttpServletRequest.getRequestURI:()Ljava/lang/String;
+    #5 = Methodref          #7.#216       // com/keruyun/portal/portalbiz/sso/Constants.needSkipUrl:(Ljava/lang/String;)Z
+    #6 = InterfaceMethodref #214.#217     // javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+    #7 = Class              #218          // com/keruyun/portal/portalbiz/sso/Constants
+    #8 = String             #219          // loginSessioinId
+    #9 = InterfaceMethodref #220.#221     // javax/servlet/http/HttpSession.getAttribute:(Ljava/lang/String;)Ljava/lang/Object;
+   #10 = Class              #222          // java/lang/String
+   #11 = String             #223          //
+   #12 = Methodref          #10.#224      // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #13 = Class              #225          // java/lang/StringBuilder
+   #14 = Methodref          #13.#211      // java/lang/StringBuilder."<init>":()V
+   #15 = Fieldref           #117.#226     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.contextPath:Ljava/lang/String;
+   #16 = Methodref          #13.#227      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #17 = Methodref          #13.#228      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #18 = InterfaceMethodref #229.#230     // javax/servlet/http/HttpServletResponse.sendRedirect:(Ljava/lang/String;)V
+   #19 = Methodref          #231.#232     // com/keruyun/portal/portalbiz/sso/utils/SsoUtil.getUpdateTimeKey:(Ljava/lang/String;)Ljava/lang/String;
+   #20 = Fieldref           #117.#233     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.redisOperation:Lcom/keruyun/portal/common/redis/operations/CommonValueOperations;
+   #21 = Methodref          #234.#235     // com/keruyun/portal/common/redis/operations/CommonValueOperations.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #22 = Methodref          #236.#237     // org/apache/commons/lang/StringUtils.isBlank:(Ljava/lang/String;)Z
+   #23 = Methodref          #117.#238     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.copyLoginInfoToSession:(Ljavax/servlet/http/HttpSession;Ljava/lang/String;)V
+   #24 = InterfaceMethodref #220.#239     // javax/servlet/http/HttpSession.setAttribute:(Ljava/lang/String;Ljava/lang/Object;)V
+   #25 = Methodref          #231.#240     // com/keruyun/portal/portalbiz/sso/utils/SsoUtil.getLoginInfoKey:(Ljava/lang/String;)Ljava/lang/String;
+   #26 = Class              #241          // com/keruyun/portal/portalbiz/sso/vo/LoginInfo
+   #27 = Methodref          #242.#243     // com/alibaba/fastjson/JSON.parseObject:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+   #28 = Methodref          #117.#244     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.copyLoginInfoToCookie:(Ljavax/servlet/http/HttpSession;Ljavax/servlet/http/HttpServletResponse;Lcom/keruyun/portal/portalbiz/sso/vo/LoginInfo;)V
+   #29 = Methodref          #117.#245     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.doClearCache:()V
+   #30 = Methodref          #26.#246      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.getUser:()Lcom/keruyun/portal/portalbiz/sso/vo/User;
+   #31 = Methodref          #247.#248     // com/keruyun/portal/portalbiz/sso/vo/User.getId:()J
+   #32 = Methodref          #26.#249      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.getBrand:()Lcom/keruyun/portal/portalbiz/sso/vo/Brand;
+   #33 = Methodref          #250.#248     // com/keruyun/portal/portalbiz/sso/vo/Brand.getId:()J
+   #34 = Methodref          #26.#251      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.getCurrentShopId:()J
+   #35 = Methodref          #252.#253     // java/lang/Long.valueOf:(J)Ljava/lang/Long;
+   #36 = Long               -1l
+   #38 = Methodref          #252.#254     // java/lang/Long.longValue:()J
+   #39 = String             #255          // crw_uid
+   #40 = Methodref          #252.#256     // java/lang/Long.toString:(J)Ljava/lang/String;
+   #41 = String             #257          // _1@3$5^7*ab~cd_
+   #42 = Methodref          #258.#259     // com/keruyun/portal/portalbiz/sso/utils/SecurityUtils.encode:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #43 = Methodref          #260.#261     // com/keruyun/portal/portalbiz/util/http/CookieUtils.setCookie:(Ljavax/servlet/http/HttpServletResponse;Ljava/lang/String;Ljava/lang/String;I)V
+   #44 = Methodref          #26.#262      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.isLoginBrand:()Z
+   #45 = String             #263          // cid
+   #46 = String             #264          // bid_
+   #47 = Methodref          #13.#265      // java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+   #48 = Integer            946080000
+   #49 = String             #266          // crw_bid
+   #50 = String             #267          // crw_cid
+   #51 = Methodref          #10.#268      // java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+   #52 = String             #269          // c_version
+   #53 = String             #191          // currentVersion
+   #54 = Methodref          #119.#228     // java/lang/Object.toString:()Ljava/lang/String;
+   #55 = Methodref          #270.#271     // com/keruyun/portal/common/util/JsonMapper.nonEmptyMapper:()Lcom/keruyun/portal/common/util/JsonMapper;
+   #56 = Methodref          #270.#272     // com/keruyun/portal/common/util/JsonMapper.fromJson:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+   #57 = Class              #273          // com/keruyun/portal/common/http/RequestContext
+   #58 = String             #274          // session_user_icon
+   #59 = Methodref          #247.#275     // com/keruyun/portal/portalbiz/sso/vo/User.getIcon:()Ljava/lang/String;
+   #60 = String             #276          // session_user_id
+   #61 = String             #277          // session_user_name
+   #62 = Methodref          #247.#278     // com/keruyun/portal/portalbiz/sso/vo/User.getName:()Ljava/lang/String;
+   #63 = String             #279          // session_role_name
+   #64 = Methodref          #247.#280     // com/keruyun/portal/portalbiz/sso/vo/User.getRoleName:()Ljava/lang/String;
+   #65 = String             #281          // session_role_code
+   #66 = Methodref          #247.#282     // com/keruyun/portal/portalbiz/sso/vo/User.getRoleCode:()Ljava/lang/String;
+   #67 = String             #283          // session_brand_id
+   #68 = String             #284          // session_brand_name
+   #69 = Methodref          #250.#278     // com/keruyun/portal/portalbiz/sso/vo/Brand.getName:()Ljava/lang/String;
+   #70 = Fieldref           #117.#285     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.logger:Lorg/slf4j/Logger;
+   #71 = String             #286          // currentShopId is {}
+   #72 = InterfaceMethodref #287.#288     // org/slf4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;)V
+   #73 = String             #289          // session_commercial_id
+   #74 = String             #290          // session_commercial_name
+   #75 = Methodref          #26.#291      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.getCurrentShopName:()Ljava/lang/String;
+   #76 = String             #292          // isLoginAsBrand
+   #77 = Methodref          #293.#294     // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+   #78 = String             #295          // canLoginBrand
+   #79 = Methodref          #26.#296      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.isCanLoginBrand:()Z
+   #80 = String             #297          // openScm
+   #81 = Methodref          #26.#298      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.isOpenScm:()Z
+   #82 = Methodref          #26.#299      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.getCurrentVersion:()I
+   #83 = Methodref          #300.#301     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #84 = String             #302          // supportV5
+   #85 = String             #303          // userMenuObject
+   #86 = Methodref          #26.#304      // com/keruyun/portal/portalbiz/sso/vo/LoginInfo.getPermissionCollection:()Lcom/keruyun/portal/portalbiz/sso/vo/PermissionCollection;
+   #87 = Methodref          #305.#306     // com/keruyun/portal/portalbiz/sso/vo/PermissionCollection.getMenus:()Ljava/util/List;
+   #88 = Methodref          #242.#307     // com/alibaba/fastjson/JSON.parseObject:(Ljava/lang/String;)Lcom/alibaba/fastjson/JSONObject;
+   #89 = String             #308          // userMenu
+   #90 = String             #309          // permissionCollection
+   #91 = Methodref          #106.#310     // com/alibaba/fastjson/JSONObject.getJSONObject:(Ljava/lang/String;)Lcom/alibaba/fastjson/JSONObject;
+   #92 = String             #311          // menus
+   #93 = Methodref          #106.#235     // com/alibaba/fastjson/JSONObject.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #94 = String             #312          // userPermissionCodeObject
+   #95 = Methodref          #305.#313     // com/keruyun/portal/portalbiz/sso/vo/PermissionCollection.getPermissionCode:()Ljava/util/Set;
+   #96 = String             #194          // brand
+   #97 = String             #314          // permission
+   #98 = Methodref          #106.#315     // com/alibaba/fastjson/JSONObject.put:(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+   #99 = String             #316          // sessionBrand
+  #100 = Methodref          #106.#228     // com/alibaba/fastjson/JSONObject.toString:()Ljava/lang/String;
+  #101 = String             #317          // grantShops
+  #102 = Methodref          #106.#318     // com/alibaba/fastjson/JSONObject.getJSONArray:(Ljava/lang/String;)Lcom/alibaba/fastjson/JSONArray;
+  #103 = Methodref          #319.#320     // com/alibaba/fastjson/JSONArray.iterator:()Ljava/util/Iterator;
+  #104 = InterfaceMethodref #321.#322     // java/util/Iterator.hasNext:()Z
+  #105 = InterfaceMethodref #321.#323     // java/util/Iterator.next:()Ljava/lang/Object;
+  #106 = Class              #324          // com/alibaba/fastjson/JSONObject
+  #107 = String             #325          // sessionCommercials
+  #108 = Methodref          #319.#228     // com/alibaba/fastjson/JSONArray.toString:()Ljava/lang/String;
+  #109 = Methodref          #231.#326     // com/keruyun/portal/portalbiz/sso/utils/SsoUtil.getDefaultPasswordKey:(Ljava/lang/String;)Ljava/lang/String;
+  #110 = String             #197          // defaultPassword
+  #111 = Methodref          #293.#327     // java/lang/Boolean.valueOf:(Ljava/lang/String;)Ljava/lang/Boolean;
+  #112 = Methodref          #328.#329     // com/keruyun/portal/portalbiz/sso/utils/LoginInfoTokenUtil.setCBKToken:(Ljava/lang/Long;JLjavax/servlet/http/HttpSession;)V
+  #113 = Methodref          #330.#331     // org/apache/shiro/SecurityUtils.getSubject:()Lorg/apache/shiro/subject/Subject;
+  #114 = InterfaceMethodref #332.#333     // org/apache/shiro/subject/Subject.getPrincipals:()Lorg/apache/shiro/subject/PrincipalCollection;
+  #115 = Fieldref           #117.#334     // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor.kryCasRealm:Lcom/keruyun/portal/portalbiz/sso/KryCasRealm;
+  #116 = Methodref          #335.#336     // com/keruyun/portal/portalbiz/sso/KryCasRealm.doClearCache:(Lorg/apache/shiro/subject/PrincipalCollection;)V
+  #117 = Class              #337          // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor
+  #118 = Methodref          #338.#339     // org/slf4j/LoggerFactory.getLogger:(Ljava/lang/Class;)Lorg/slf4j/Logger;
+  #119 = Class              #340          // java/lang/Object
+  #120 = Class              #341          // org/springframework/web/servlet/HandlerInterceptor
+  #121 = Utf8               logger
+  #122 = Utf8               Lorg/slf4j/Logger;
+  #123 = Utf8               kryCasRealm
+  #124 = Utf8               Lcom/keruyun/portal/portalbiz/sso/KryCasRealm;
+  #125 = Utf8               RuntimeVisibleAnnotations
+  #126 = Utf8               Lorg/springframework/beans/factory/annotation/Autowired;
+  #127 = Utf8               redisOperation
+  #128 = Utf8               Lcom/keruyun/portal/common/redis/operations/CommonValueOperations;
+  #129 = Utf8               Signature
+  #130 = Utf8               Lcom/keruyun/portal/common/redis/operations/CommonValueOperations<Ljava/lang/String;>;
+  #131 = Utf8               contextPath
+  #132 = Utf8               Ljava/lang/String;
+  #133 = Utf8               Lorg/springframework/beans/factory/annotation/Value;
+  #134 = Utf8               value
+  #135 = Utf8               ${server.context-path}
+  #136 = Utf8               logoutStr
+  #137 = Utf8               <init>
+  #138 = Utf8               ()V
+  #139 = Utf8               Code
+  #140 = Utf8               LineNumberTable
+  #141 = Utf8               LocalVariableTable
+  #142 = Utf8               this
+  #143 = Utf8               Lcom/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor;
+  #144 = Utf8               afterCompletion
+  #145 = Utf8               (Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/Object;Ljava/lang/Exception;)V
+  #146 = Utf8               arg0
+  #147 = Utf8               Ljavax/servlet/http/HttpServletRequest;
+  #148 = Utf8               arg1
+  #149 = Utf8               Ljavax/servlet/http/HttpServletResponse;
+  #150 = Utf8               arg2
+  #151 = Utf8               Ljava/lang/Object;
+  #152 = Utf8               arg3
+  #153 = Utf8               Ljava/lang/Exception;
+  #154 = Utf8               Exceptions
+  #155 = Class              #342          // java/lang/Exception
+  #156 = Utf8               postHandle
+  #157 = Utf8               (Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/Object;Lorg/springframework/web/servlet/ModelAndView;)V
+  #158 = Utf8               request
+  #159 = Utf8               response
+  #160 = Utf8               Lorg/springframework/web/servlet/ModelAndView;
+  #161 = Utf8               preHandle
+  #162 = Utf8               (Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/Object;)Z
+  #163 = Utf8               session
+  #164 = Utf8               Ljavax/servlet/http/HttpSession;
+  #165 = Utf8               sessionKey
+  #166 = Utf8               updateTimeKey
+  #167 = Utf8               updateTimeSession
+  #168 = Utf8               updateTime
+  #169 = Utf8               loginInfoKey
+  #170 = Utf8               jsonString
+  #171 = Utf8               loginInfo
+  #172 = Utf8               Lcom/keruyun/portal/portalbiz/sso/vo/LoginInfo;
+  #173 = Utf8               StackMapTable
+  #174 = Class              #343          // javax/servlet/http/HttpSession
+  #175 = Class              #222          // java/lang/String
+  #176 = Utf8               copyLoginInfoToCookie
+  #177 = Utf8               (Ljavax/servlet/http/HttpSession;Ljavax/servlet/http/HttpServletResponse;Lcom/keruyun/portal/portalbiz/sso/vo/LoginInfo;)V
+  #178 = Utf8               userId
+  #179 = Utf8               J
+  #180 = Utf8               brandId
+  #181 = Utf8               shopId
+  #182 = Utf8               Ljava/lang/Long;
+  #183 = Class              #344          // java/lang/Long
+  #184 = Utf8               copyLoginInfoToSession
+  #185 = Utf8               (Ljavax/servlet/http/HttpSession;Ljava/lang/String;)V
+  #186 = Utf8               o
+  #187 = Utf8               Lcom/alibaba/fastjson/JSONObject;
+  #188 = Utf8               aJsonArray
+  #189 = Utf8               loginSessionId
+  #190 = Utf8               currentShopId
+  #191 = Utf8               currentVersion
+  #192 = Utf8               I
+  #193 = Utf8               jsonObject
+  #194 = Utf8               brand
+  #195 = Utf8               jsonArray
+  #196 = Utf8               Lcom/alibaba/fastjson/JSONArray;
+  #197 = Utf8               defaultPassword
+  #198 = Class              #241          // com/keruyun/portal/portalbiz/sso/vo/LoginInfo
+  #199 = Class              #337          // com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor
+  #200 = Class              #324          // com/alibaba/fastjson/JSONObject
+  #201 = Class              #345          // com/alibaba/fastjson/JSONArray
+  #202 = Class              #346          // java/util/Iterator
+  #203 = Utf8               doClearCache
+  #204 = Utf8               subject
+  #205 = Utf8               Lorg/apache/shiro/subject/Subject;
+  #206 = Utf8               principals
+  #207 = Utf8               Lorg/apache/shiro/subject/PrincipalCollection;
+  #208 = Utf8               <clinit>
+  #209 = Utf8               SourceFile
+  #210 = Utf8               LoginInfoInterceptor.java
+  #211 = NameAndType        #137:#138     // "<init>":()V
+  #212 = Utf8               /logout
+  #213 = NameAndType        #136:#132     // logoutStr:Ljava/lang/String;
+  #214 = Class              #347          // javax/servlet/http/HttpServletRequest
+  #215 = NameAndType        #348:#349     // getRequestURI:()Ljava/lang/String;
+  #216 = NameAndType        #350:#351     // needSkipUrl:(Ljava/lang/String;)Z
+  #217 = NameAndType        #352:#353     // getSession:(Z)Ljavax/servlet/http/HttpSession;
+  #218 = Utf8               com/keruyun/portal/portalbiz/sso/Constants
+  #219 = Utf8               loginSessioinId
+  #220 = Class              #343          // javax/servlet/http/HttpSession
+  #221 = NameAndType        #354:#355     // getAttribute:(Ljava/lang/String;)Ljava/lang/Object;
+  #222 = Utf8               java/lang/String
+  #223 = Utf8
+  #224 = NameAndType        #356:#357     // equals:(Ljava/lang/Object;)Z
+  #225 = Utf8               java/lang/StringBuilder
+  #226 = NameAndType        #131:#132     // contextPath:Ljava/lang/String;
+  #227 = NameAndType        #358:#359     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #228 = NameAndType        #360:#349     // toString:()Ljava/lang/String;
+  #229 = Class              #361          // javax/servlet/http/HttpServletResponse
+  #230 = NameAndType        #362:#363     // sendRedirect:(Ljava/lang/String;)V
+  #231 = Class              #364          // com/keruyun/portal/portalbiz/sso/utils/SsoUtil
+  #232 = NameAndType        #365:#366     // getUpdateTimeKey:(Ljava/lang/String;)Ljava/lang/String;
+  #233 = NameAndType        #127:#128     // redisOperation:Lcom/keruyun/portal/common/redis/operations/CommonValueOperations;
+  #234 = Class              #367          // com/keruyun/portal/common/redis/operations/CommonValueOperations
+  #235 = NameAndType        #368:#369     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #236 = Class              #370          // org/apache/commons/lang/StringUtils
+  #237 = NameAndType        #371:#351     // isBlank:(Ljava/lang/String;)Z
+  #238 = NameAndType        #184:#185     // copyLoginInfoToSession:(Ljavax/servlet/http/HttpSession;Ljava/lang/String;)V
+  #239 = NameAndType        #372:#373     // setAttribute:(Ljava/lang/String;Ljava/lang/Object;)V
+  #240 = NameAndType        #374:#366     // getLoginInfoKey:(Ljava/lang/String;)Ljava/lang/String;
+  #241 = Utf8               com/keruyun/portal/portalbiz/sso/vo/LoginInfo
+  #242 = Class              #375          // com/alibaba/fastjson/JSON
+  #243 = NameAndType        #376:#377     // parseObject:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+  #244 = NameAndType        #176:#177     // copyLoginInfoToCookie:(Ljavax/servlet/http/HttpSession;Ljavax/servlet/http/HttpServletResponse;Lcom/keruyun/portal/portalbiz/sso/vo/LoginInfo;)V
+  #245 = NameAndType        #203:#138     // doClearCache:()V
+  #246 = NameAndType        #378:#379     // getUser:()Lcom/keruyun/portal/portalbiz/sso/vo/User;
+  #247 = Class              #380          // com/keruyun/portal/portalbiz/sso/vo/User
+  #248 = NameAndType        #381:#382     // getId:()J
+  #249 = NameAndType        #383:#384     // getBrand:()Lcom/keruyun/portal/portalbiz/sso/vo/Brand;
+  #250 = Class              #385          // com/keruyun/portal/portalbiz/sso/vo/Brand
+  #251 = NameAndType        #386:#382     // getCurrentShopId:()J
+  #252 = Class              #344          // java/lang/Long
+  #253 = NameAndType        #387:#388     // valueOf:(J)Ljava/lang/Long;
+  #254 = NameAndType        #389:#382     // longValue:()J
+  #255 = Utf8               crw_uid
+  #256 = NameAndType        #360:#390     // toString:(J)Ljava/lang/String;
+  #257 = Utf8               _1@3$5^7*ab~cd_
+  #258 = Class              #391          // com/keruyun/portal/portalbiz/sso/utils/SecurityUtils
+  #259 = NameAndType        #392:#393     // encode:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #260 = Class              #394          // com/keruyun/portal/portalbiz/util/http/CookieUtils
+  #261 = NameAndType        #395:#396     // setCookie:(Ljavax/servlet/http/HttpServletResponse;Ljava/lang/String;Ljava/lang/String;I)V
+  #262 = NameAndType        #397:#398     // isLoginBrand:()Z
+  #263 = Utf8               cid
+  #264 = Utf8               bid_
+  #265 = NameAndType        #358:#399     // append:(J)Ljava/lang/StringBuilder;
+  #266 = Utf8               crw_bid
+  #267 = Utf8               crw_cid
+  #268 = NameAndType        #387:#400     // valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+  #269 = Utf8               c_version
+  #270 = Class              #401          // com/keruyun/portal/common/util/JsonMapper
+  #271 = NameAndType        #402:#403     // nonEmptyMapper:()Lcom/keruyun/portal/common/util/JsonMapper;
+  #272 = NameAndType        #404:#377     // fromJson:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+  #273 = Utf8               com/keruyun/portal/common/http/RequestContext
+  #274 = Utf8               session_user_icon
+  #275 = NameAndType        #405:#349     // getIcon:()Ljava/lang/String;
+  #276 = Utf8               session_user_id
+  #277 = Utf8               session_user_name
+  #278 = NameAndType        #406:#349     // getName:()Ljava/lang/String;
+  #279 = Utf8               session_role_name
+  #280 = NameAndType        #407:#349     // getRoleName:()Ljava/lang/String;
+  #281 = Utf8               session_role_code
+  #282 = NameAndType        #408:#349     // getRoleCode:()Ljava/lang/String;
+  #283 = Utf8               session_brand_id
+  #284 = Utf8               session_brand_name
+  #285 = NameAndType        #121:#122     // logger:Lorg/slf4j/Logger;
+  #286 = Utf8               currentShopId is {}
+  #287 = Class              #409          // org/slf4j/Logger
+  #288 = NameAndType        #410:#373     // info:(Ljava/lang/String;Ljava/lang/Object;)V
+  #289 = Utf8               session_commercial_id
+  #290 = Utf8               session_commercial_name
+  #291 = NameAndType        #411:#349     // getCurrentShopName:()Ljava/lang/String;
+  #292 = Utf8               isLoginAsBrand
+  #293 = Class              #412          // java/lang/Boolean
+  #294 = NameAndType        #387:#413     // valueOf:(Z)Ljava/lang/Boolean;
+  #295 = Utf8               canLoginBrand
+  #296 = NameAndType        #414:#398     // isCanLoginBrand:()Z
+  #297 = Utf8               openScm
+  #298 = NameAndType        #415:#398     // isOpenScm:()Z
+  #299 = NameAndType        #416:#417     // getCurrentVersion:()I
+  #300 = Class              #418          // java/lang/Integer
+  #301 = NameAndType        #387:#419     // valueOf:(I)Ljava/lang/Integer;
+  #302 = Utf8               supportV5
+  #303 = Utf8               userMenuObject
+  #304 = NameAndType        #420:#421     // getPermissionCollection:()Lcom/keruyun/portal/portalbiz/sso/vo/PermissionCollection;
+  #305 = Class              #422          // com/keruyun/portal/portalbiz/sso/vo/PermissionCollection
+  #306 = NameAndType        #423:#424     // getMenus:()Ljava/util/List;
+  #307 = NameAndType        #376:#425     // parseObject:(Ljava/lang/String;)Lcom/alibaba/fastjson/JSONObject;
+  #308 = Utf8               userMenu
+  #309 = Utf8               permissionCollection
+  #310 = NameAndType        #426:#425     // getJSONObject:(Ljava/lang/String;)Lcom/alibaba/fastjson/JSONObject;
+  #311 = Utf8               menus
+  #312 = Utf8               userPermissionCodeObject
+  #313 = NameAndType        #427:#428     // getPermissionCode:()Ljava/util/Set;
+  #314 = Utf8               permission
+  #315 = NameAndType        #429:#430     // put:(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+  #316 = Utf8               sessionBrand
+  #317 = Utf8               grantShops
+  #318 = NameAndType        #431:#432     // getJSONArray:(Ljava/lang/String;)Lcom/alibaba/fastjson/JSONArray;
+  #319 = Class              #345          // com/alibaba/fastjson/JSONArray
+  #320 = NameAndType        #433:#434     // iterator:()Ljava/util/Iterator;
+  #321 = Class              #346          // java/util/Iterator
+  #322 = NameAndType        #435:#398     // hasNext:()Z
+  #323 = NameAndType        #436:#437     // next:()Ljava/lang/Object;
+  #324 = Utf8               com/alibaba/fastjson/JSONObject
+  #325 = Utf8               sessionCommercials
+  #326 = NameAndType        #438:#366     // getDefaultPasswordKey:(Ljava/lang/String;)Ljava/lang/String;
+  #327 = NameAndType        #387:#439     // valueOf:(Ljava/lang/String;)Ljava/lang/Boolean;
+  #328 = Class              #440          // com/keruyun/portal/portalbiz/sso/utils/LoginInfoTokenUtil
+  #329 = NameAndType        #441:#442     // setCBKToken:(Ljava/lang/Long;JLjavax/servlet/http/HttpSession;)V
+  #330 = Class              #443          // org/apache/shiro/SecurityUtils
+  #331 = NameAndType        #444:#445     // getSubject:()Lorg/apache/shiro/subject/Subject;
+  #332 = Class              #446          // org/apache/shiro/subject/Subject
+  #333 = NameAndType        #447:#448     // getPrincipals:()Lorg/apache/shiro/subject/PrincipalCollection;
+  #334 = NameAndType        #123:#124     // kryCasRealm:Lcom/keruyun/portal/portalbiz/sso/KryCasRealm;
+  #335 = Class              #449          // com/keruyun/portal/portalbiz/sso/KryCasRealm
+  #336 = NameAndType        #203:#450     // doClearCache:(Lorg/apache/shiro/subject/PrincipalCollection;)V
+  #337 = Utf8               com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor
+  #338 = Class              #451          // org/slf4j/LoggerFactory
+  #339 = NameAndType        #452:#453     // getLogger:(Ljava/lang/Class;)Lorg/slf4j/Logger;
+  #340 = Utf8               java/lang/Object
+  #341 = Utf8               org/springframework/web/servlet/HandlerInterceptor
+  #342 = Utf8               java/lang/Exception
+  #343 = Utf8               javax/servlet/http/HttpSession
+  #344 = Utf8               java/lang/Long
+  #345 = Utf8               com/alibaba/fastjson/JSONArray
+  #346 = Utf8               java/util/Iterator
+  #347 = Utf8               javax/servlet/http/HttpServletRequest
+  #348 = Utf8               getRequestURI
+  #349 = Utf8               ()Ljava/lang/String;
+  #350 = Utf8               needSkipUrl
+  #351 = Utf8               (Ljava/lang/String;)Z
+  #352 = Utf8               getSession
+  #353 = Utf8               (Z)Ljavax/servlet/http/HttpSession;
+  #354 = Utf8               getAttribute
+  #355 = Utf8               (Ljava/lang/String;)Ljava/lang/Object;
+  #356 = Utf8               equals
+  #357 = Utf8               (Ljava/lang/Object;)Z
+  #358 = Utf8               append
+  #359 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #360 = Utf8               toString
+  #361 = Utf8               javax/servlet/http/HttpServletResponse
+  #362 = Utf8               sendRedirect
+  #363 = Utf8               (Ljava/lang/String;)V
+  #364 = Utf8               com/keruyun/portal/portalbiz/sso/utils/SsoUtil
+  #365 = Utf8               getUpdateTimeKey
+  #366 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #367 = Utf8               com/keruyun/portal/common/redis/operations/CommonValueOperations
+  #368 = Utf8               get
+  #369 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #370 = Utf8               org/apache/commons/lang/StringUtils
+  #371 = Utf8               isBlank
+  #372 = Utf8               setAttribute
+  #373 = Utf8               (Ljava/lang/String;Ljava/lang/Object;)V
+  #374 = Utf8               getLoginInfoKey
+  #375 = Utf8               com/alibaba/fastjson/JSON
+  #376 = Utf8               parseObject
+  #377 = Utf8               (Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+  #378 = Utf8               getUser
+  #379 = Utf8               ()Lcom/keruyun/portal/portalbiz/sso/vo/User;
+  #380 = Utf8               com/keruyun/portal/portalbiz/sso/vo/User
+  #381 = Utf8               getId
+  #382 = Utf8               ()J
+  #383 = Utf8               getBrand
+  #384 = Utf8               ()Lcom/keruyun/portal/portalbiz/sso/vo/Brand;
+  #385 = Utf8               com/keruyun/portal/portalbiz/sso/vo/Brand
+  #386 = Utf8               getCurrentShopId
+  #387 = Utf8               valueOf
+  #388 = Utf8               (J)Ljava/lang/Long;
+  #389 = Utf8               longValue
+  #390 = Utf8               (J)Ljava/lang/String;
+  #391 = Utf8               com/keruyun/portal/portalbiz/sso/utils/SecurityUtils
+  #392 = Utf8               encode
+  #393 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #394 = Utf8               com/keruyun/portal/portalbiz/util/http/CookieUtils
+  #395 = Utf8               setCookie
+  #396 = Utf8               (Ljavax/servlet/http/HttpServletResponse;Ljava/lang/String;Ljava/lang/String;I)V
+  #397 = Utf8               isLoginBrand
+  #398 = Utf8               ()Z
+  #399 = Utf8               (J)Ljava/lang/StringBuilder;
+  #400 = Utf8               (Ljava/lang/Object;)Ljava/lang/String;
+  #401 = Utf8               com/keruyun/portal/common/util/JsonMapper
+  #402 = Utf8               nonEmptyMapper
+  #403 = Utf8               ()Lcom/keruyun/portal/common/util/JsonMapper;
+  #404 = Utf8               fromJson
+  #405 = Utf8               getIcon
+  #406 = Utf8               getName
+  #407 = Utf8               getRoleName
+  #408 = Utf8               getRoleCode
+  #409 = Utf8               org/slf4j/Logger
+  #410 = Utf8               info
+  #411 = Utf8               getCurrentShopName
+  #412 = Utf8               java/lang/Boolean
+  #413 = Utf8               (Z)Ljava/lang/Boolean;
+  #414 = Utf8               isCanLoginBrand
+  #415 = Utf8               isOpenScm
+  #416 = Utf8               getCurrentVersion
+  #417 = Utf8               ()I
+  #418 = Utf8               java/lang/Integer
+  #419 = Utf8               (I)Ljava/lang/Integer;
+  #420 = Utf8               getPermissionCollection
+  #421 = Utf8               ()Lcom/keruyun/portal/portalbiz/sso/vo/PermissionCollection;
+  #422 = Utf8               com/keruyun/portal/portalbiz/sso/vo/PermissionCollection
+  #423 = Utf8               getMenus
+  #424 = Utf8               ()Ljava/util/List;
+  #425 = Utf8               (Ljava/lang/String;)Lcom/alibaba/fastjson/JSONObject;
+  #426 = Utf8               getJSONObject
+  #427 = Utf8               getPermissionCode
+  #428 = Utf8               ()Ljava/util/Set;
+  #429 = Utf8               put
+  #430 = Utf8               (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+  #431 = Utf8               getJSONArray
+  #432 = Utf8               (Ljava/lang/String;)Lcom/alibaba/fastjson/JSONArray;
+  #433 = Utf8               iterator
+  #434 = Utf8               ()Ljava/util/Iterator;
+  #435 = Utf8               hasNext
+  #436 = Utf8               next
+  #437 = Utf8               ()Ljava/lang/Object;
+  #438 = Utf8               getDefaultPasswordKey
+  #439 = Utf8               (Ljava/lang/String;)Ljava/lang/Boolean;
+  #440 = Utf8               com/keruyun/portal/portalbiz/sso/utils/LoginInfoTokenUtil
+  #441 = Utf8               setCBKToken
+  #442 = Utf8               (Ljava/lang/Long;JLjavax/servlet/http/HttpSession;)V
+  #443 = Utf8               org/apache/shiro/SecurityUtils
+  #444 = Utf8               getSubject
+  #445 = Utf8               ()Lorg/apache/shiro/subject/Subject;
+  #446 = Utf8               org/apache/shiro/subject/Subject
+  #447 = Utf8               getPrincipals
+  #448 = Utf8               ()Lorg/apache/shiro/subject/PrincipalCollection;
+  #449 = Utf8               com/keruyun/portal/portalbiz/sso/KryCasRealm
+  #450 = Utf8               (Lorg/apache/shiro/subject/PrincipalCollection;)V
+  #451 = Utf8               org/slf4j/LoggerFactory
+  #452 = Utf8               getLogger
+  #453 = Utf8               (Ljava/lang/Class;)Lorg/slf4j/Logger;
+{
+  public com.keruyun.portal.portalbiz.sso.filter.LoginInfoInterceptor();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: ldc           #2                  // String /logout
+         7: putfield      #3                  // Field logoutStr:Ljava/lang/String;
+        10: return
+      LineNumberTable:
+        line 35: 0
+        line 44: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor;
+
+  public void afterCompletion(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception) throws java.lang.Exception;
+    descriptor: (Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/Object;Ljava/lang/Exception;)V
+    flags: ACC_PUBLIC
+    Code:
+      stack=0, locals=5, args_size=5
+         0: return
+      LineNumberTable:
+        line 50: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor;
+            0       1     1  arg0   Ljavax/servlet/http/HttpServletRequest;
+            0       1     2  arg1   Ljavax/servlet/http/HttpServletResponse;
+            0       1     3  arg2   Ljava/lang/Object;
+            0       1     4  arg3   Ljava/lang/Exception;
+    Exceptions:
+      throws java.lang.Exception
+
+  public void postHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView) throws java.lang.Exception;
+    descriptor: (Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/Object;Lorg/springframework/web/servlet/ModelAndView;)V
+    flags: ACC_PUBLIC
+    Code:
+      stack=0, locals=5, args_size=5
+         0: return
+      LineNumberTable:
+        line 55: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor;
+            0       1     1 request   Ljavax/servlet/http/HttpServletRequest;
+            0       1     2 response   Ljavax/servlet/http/HttpServletResponse;
+            0       1     3  arg2   Ljava/lang/Object;
+            0       1     4  arg3   Lorg/springframework/web/servlet/ModelAndView;
+    Exceptions:
+      throws java.lang.Exception
+
+  public boolean preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object) throws java.lang.Exception;
+    descriptor: (Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/Object;)Z
+    flags: ACC_PUBLIC
+    Code:
+      stack=4, locals=12, args_size=4
+         0: aload_1
+         1: invokeinterface #4,  1            // InterfaceMethod javax/servlet/http/HttpServletRequest.getRequestURI:()Ljava/lang/String;
+         6: invokestatic  #5                  // Method com/keruyun/portal/portalbiz/sso/Constants.needSkipUrl:(Ljava/lang/String;)Z
+         9: ifeq          14
+        12: iconst_1
+        13: ireturn
+        14: aload_1
+        15: iconst_0
+        16: invokeinterface #6,  2            // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+        21: astore        4
+        23: aload         4
+        25: ldc           #8                  // String loginSessioinId
+        27: invokeinterface #9,  2            // InterfaceMethod javax/servlet/http/HttpSession.getAttribute:(Ljava/lang/String;)Ljava/lang/Object;
+        32: checkcast     #10                 // class java/lang/String
+        35: astore        5
+        37: aload         5
+        39: ifnull        52
+        42: ldc           #11                 // String
+        44: aload         5
+        46: invokevirtual #12                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        49: ifeq          84
+        52: aload_2
+        53: new           #13                 // class java/lang/StringBuilder
+        56: dup
+        57: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+        60: aload_0
+        61: getfield      #15                 // Field contextPath:Ljava/lang/String;
+        64: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        67: aload_0
+        68: getfield      #3                  // Field logoutStr:Ljava/lang/String;
+        71: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        74: invokevirtual #17                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        77: invokeinterface #18,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendRedirect:(Ljava/lang/String;)V
+        82: iconst_0
+        83: ireturn
+        84: aload         5
+        86: invokestatic  #19                 // Method com/keruyun/portal/portalbiz/sso/utils/SsoUtil.getUpdateTimeKey:(Ljava/lang/String;)Ljava/lang/String;
+        89: astore        6
+        91: aload         4
+        93: aload         6
+        95: invokeinterface #9,  2            // InterfaceMethod javax/servlet/http/HttpSession.getAttribute:(Ljava/lang/String;)Ljava/lang/Object;
+       100: checkcast     #10                 // class java/lang/String
+       103: astore        7
+       105: aload_0
+       106: getfield      #20                 // Field redisOperation:Lcom/keruyun/portal/common/redis/operations/CommonValueOperations;
+       109: aload         6
+       111: invokevirtual #21                 // Method com/keruyun/portal/common/redis/operations/CommonValueOperations.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       114: checkcast     #10                 // class java/lang/String
+       117: astore        8
+       119: aload         8
+       121: invokestatic  #22                 // Method org/apache/commons/lang/StringUtils.isBlank:(Ljava/lang/String;)Z
+       124: ifeq          159
+       127: aload_2
+       128: new           #13                 // class java/lang/StringBuilder
+       131: dup
+       132: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+       135: aload_0
+       136: getfield      #15                 // Field contextPath:Ljava/lang/String;
+       139: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       142: aload_0
+       143: getfield      #3                  // Field logoutStr:Ljava/lang/String;
+       146: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       149: invokevirtual #17                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       152: invokeinterface #18,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendRedirect:(Ljava/lang/String;)V
+       157: iconst_0
+       158: ireturn
+       159: aload         8
+       161: aload         7
+       163: invokevirtual #12                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       166: ifeq          171
+       169: iconst_1
+       170: ireturn
+       171: aload_0
+       172: aload         4
+       174: aload         5
+       176: invokespecial #23                 // Method copyLoginInfoToSession:(Ljavax/servlet/http/HttpSession;Ljava/lang/String;)V
+       179: aload         4
+       181: aload         6
+       183: aload         8
+       185: invokeinterface #24,  3           // InterfaceMethod javax/servlet/http/HttpSession.setAttribute:(Ljava/lang/String;Ljava/lang/Object;)V
+       190: aload         5
+       192: invokestatic  #25                 // Method com/keruyun/portal/portalbiz/sso/utils/SsoUtil.getLoginInfoKey:(Ljava/lang/String;)Ljava/lang/String;
+       195: astore        9
+       197: aload_0
+       198: getfield      #20                 // Field redisOperation:Lcom/keruyun/portal/common/redis/operations/CommonValueOperations;
+       201: aload         9
+       203: invokevirtual #21                 // Method com/keruyun/portal/common/redis/operations/CommonValueOperations.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       206: checkcast     #10                 // class java/lang/String
+       209: astore        10
+       211: aload         10
+       213: invokestatic  #22                 // Method org/apache/commons/lang/StringUtils.isBlank:(Ljava/lang/String;)Z
+       216: ifeq          251
+       219: aload_2
+       220: new           #13                 // class java/lang/StringBuilder
+       223: dup
+       224: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+       227: aload_0
+       228: getfield      #15                 // Field contextPath:Ljava/lang/String;
+       231: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       234: aload_0
+       235: getfield      #3                  // Field logoutStr:Ljava/lang/String;
+       238: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       241: invokevirtual #17                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       244: invokeinterface #18,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendRedirect:(Ljava/lang/String;)V
+       249: iconst_0
+       250: ireturn
+       251: aload         10
+       253: ldc           #26                 // class com/keruyun/portal/portalbiz/sso/vo/LoginInfo
+       255: invokestatic  #27                 // Method com/alibaba/fastjson/JSON.parseObject:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+       258: checkcast     #26                 // class com/keruyun/portal/portalbiz/sso/vo/LoginInfo
+       261: astore        11
+       263: aload_0
+       264: aload         4
+       266: aload_2
+       267: aload         11
+       269: invokespecial #28                 // Method copyLoginInfoToCookie:(Ljavax/servlet/http/HttpSession;Ljavax/servlet/http/HttpServletResponse;Lcom/keruyun/portal/portalbiz/sso/vo/LoginInfo;)V
+       272: aload_0
+       273: invokespecial #29                 // Method doClearCache:()V
+       276: iconst_1
+       277: ireturn
+      LineNumberTable:
+        line 60: 0
+        line 61: 12
+        line 63: 14
+        line 64: 23
+        line 65: 37
+        line 67: 52
+        line 68: 82
+        line 70: 84
+        line 71: 91
+        line 72: 105
+        line 73: 119
+        line 74: 127
+        line 75: 157
+        line 78: 159
+        line 79: 169
+        line 82: 171
+        line 84: 179
+        line 86: 190
+        line 87: 197
+        line 88: 211
+        line 89: 219
+        line 90: 249
+        line 93: 251
+        line 94: 263
+        line 97: 272
+        line 98: 276
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     278     0  this   Lcom/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor;
+            0     278     1 request   Ljavax/servlet/http/HttpServletRequest;
+            0     278     2 response   Ljavax/servlet/http/HttpServletResponse;
+            0     278     3  arg2   Ljava/lang/Object;
+           23     255     4 session   Ljavax/servlet/http/HttpSession;
+           37     241     5 sessionKey   Ljava/lang/String;
+           91     187     6 updateTimeKey   Ljava/lang/String;
+          105     173     7 updateTimeSession   Ljava/lang/String;
+          119     159     8 updateTime   Ljava/lang/String;
+          197      81     9 loginInfoKey   Ljava/lang/String;
+          211      67    10 jsonString   Ljava/lang/String;
+          263      15    11 loginInfo   Lcom/keruyun/portal/portalbiz/sso/vo/LoginInfo;
+      StackMapTable: number_of_entries = 6
+        frame_type = 14 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 37
+          locals = [ class javax/servlet/http/HttpSession, class java/lang/String ]
+        frame_type = 31 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 74
+          locals = [ class java/lang/String, class java/lang/String, class java/lang/String ]
+        frame_type = 11 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 79
+          locals = [ class java/lang/String, class java/lang/String ]
+    Exceptions:
+      throws java.lang.Exception
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: ldc           #117                // class com/keruyun/portal/portalbiz/sso/filter/LoginInfoInterceptor
+         2: invokestatic  #118                // Method org/slf4j/LoggerFactory.getLogger:(Ljava/lang/Class;)Lorg/slf4j/Logger;
+         5: putstatic     #70                 // Field logger:Lorg/slf4j/Logger;
+         8: return
+      LineNumberTable:
+        line 36: 0
+}
+SourceFile: "LoginInfoInterceptor.java"
