@@ -1,15 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func fibonacci() func() int64 {
-	a := int64(0)
-	b := int64(1)
+	a, b := 0, 1
 	return func() int64 {
-		result := a + b
-		a = b
-		b = result
-		return result
+		a, b = b, a+b
+		return int64(b)
 	}
 }
 func main() {
